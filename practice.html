@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practice - Typing Tutor</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="practice-body">
+    <div class="practice-container">
+        <header class="practice-header">
+            <a href="index.html" class="btn-back">← Back to Menu</a>
+            <div class="live-stats">
+                <div class="stat-box">Time: <span id="time">0:00</span></div>
+                <div class="stat-box">WPM: <span id="wpm">0</span></div>
+                <div class="stat-box">Acc: <span id="accuracy">100</span>%</div>
+            </div>
+            <button id="restart-btn" class="btn btn-small">Restart</button>
+        </header>
+
+        <main class="typing-area">
+            <div id="text-display" class="text-display" tabindex="0">
+                Click here to start typing...
+            </div>
+        </main>
+
+        <div id="visual-aids" class="visual-aids">
+            <!-- SVG Hands will go here -->
+            <div id="hands-container" class="hands-container"></div>
+
+            <!-- Virtual Keyboard -->
+            <div id="keyboard" class="keyboard"></div>
+        </div>
+
+        <!-- Results Modal -->
+        <div id="results-modal" class="modal hidden">
+            <div class="modal-content">
+                <h2>Practice Complete!</h2>
+                <div class="final-stats">
+                    <p>WPM: <span id="final-wpm"></span></p>
+                    <p>Accuracy: <span id="final-accuracy"></span>%</p>
+                    <p>Characters (Correct/Incorrect/Extra/Missed): <span id="final-chars"></span></p>
+                </div>
+                <div class="modal-actions">
+                    <button id="modal-restart" class="btn btn-primary">Try Again</button>
+                    <a href="index.html" class="btn btn-secondary">Home</a>
+                    <a href="stats.html" class="btn btn-secondary">View Stats</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
