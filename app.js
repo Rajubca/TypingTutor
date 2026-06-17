@@ -147,7 +147,7 @@ function generateText() {
 }
 
 function renderText() {
-    elements.textDisplay.innerHTML = '';
+    elements.textDisplay.textContent = '';
     state.text.split('').forEach((char, index) => {
         const charSpan = document.createElement('span');
         charSpan.innerText = char;
@@ -361,7 +361,7 @@ function saveResultToLocalStorage(result) {
 
 // --- VISUAL AIDS (KEYBOARD & HANDS) ---
 function renderKeyboard() {
-    elements.keyboard.innerHTML = '';
+    elements.keyboard.textContent = '';
 
     keyboardLayout.forEach(row => {
         const rowDiv = document.createElement('div');

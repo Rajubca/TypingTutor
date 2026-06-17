@@ -12,7 +12,13 @@ function initStats() {
     const history = JSON.parse(localStorage.getItem('typingTutorHistory')) || [];
 
     if (history.length === 0) {
-        elements.historyBody.innerHTML = '<tr><td colspan="5" style="text-align: center;">No practice history yet. Go type something!</td></tr>';
+        const tr = document.createElement('tr');
+        const td = document.createElement('td');
+        td.colSpan = 5;
+        td.style.textAlign = 'center';
+        td.textContent = 'No practice history yet. Go type something!';
+        tr.appendChild(td);
+        elements.historyBody.appendChild(tr);
         return;
     }
 
@@ -37,7 +43,7 @@ function initStats() {
     elements.totalTests.innerText = history.length;
 
     // Populate Table
-    elements.historyBody.innerHTML = '';
+    elements.historyBody.textContent = '';
 
     // Only show last 20 tests in history table to prevent it getting too long
     const displayHistory = history.slice(0, 20);
@@ -47,13 +53,29 @@ function initStats() {
         const durationMins = session.duration / 60;
 
         const tr = document.createElement('tr');
-        tr.innerHTML = `
-            <td>${date}</td>
-            <td style="text-transform: capitalize;">${session.mode}</td>
-            <td>${durationMins} Min</td>
-            <td><strong>${session.wpm}</strong></td>
-            <td>${session.accuracy}%</td>
-        `;
+
+        const tdDate = document.createElement('td');
+        tdDate.textContent = date;
+        tr.appendChild(tdDate);
+
+        const tdMode = document.createElement('td');
+        tdMode.style.textTransform = 'capitalize';
+        tdMode.textContent = session.mode;
+        tr.appendChild(tdMode);
+
+        const tdDuration = document.createElement('td');
+        tdDuration.textContent = `${durationMins} Min`;
+        tr.appendChild(tdDuration);
+
+        const tdWpm = document.createElement('td');
+        const strongWpm = document.createElement('strong');
+        strongWpm.textContent = session.wpm;
+        tdWpm.appendChild(strongWpm);
+        tr.appendChild(tdWpm);
+
+        const tdAcc = document.createElement('td');
+        tdAcc.textContent = `${session.accuracy}%`;
+        tr.appendChild(tdAcc);
         elements.historyBody.appendChild(tr);
     });
 }
@@ -69,7 +91,14 @@ if (elements.clearBtn) {
             elements.highestWpm.innerText = '0';
             elements.avgAcc.innerText = '0%';
             elements.totalTests.innerText = '0';
-            elements.historyBody.innerHTML = '<tr><td colspan="5" style="text-align: center;">No practice history yet. Go type something!</td></tr>';
+            elements.historyBody.textContent = '';
+            const tr = document.createElement('tr');
+            const td = document.createElement('td');
+            td.colSpan = 5;
+            td.style.textAlign = 'center';
+            td.textContent = 'No practice history yet. Go type something!';
+            tr.appendChild(td);
+            elements.historyBody.appendChild(tr);
         }
     });
 }
