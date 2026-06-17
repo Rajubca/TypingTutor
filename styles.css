@@ -1,0 +1,463 @@
+:root {
+    --bg-color: #121212;
+    --text-color: #e0e0e0;
+    --primary-color: #bb86fc;
+    --secondary-color: #03dac6;
+    --error-color: #cf6679;
+    --surface-color: #1e1e1e;
+    --surface-color-hover: #2c2c2c;
+
+    --typed-correct: #a5d6a7;
+    --typed-incorrect: #ef9a9a;
+    --typed-current: #ffffff;
+
+    --key-bg: #333333;
+    --key-border: #444444;
+    --key-text: #ffffff;
+    --key-active: #bb86fc;
+    --key-target: #03dac6;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+h1 {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+    color: var(--primary-color);
+}
+
+h2 {
+    margin-bottom: 1rem;
+}
+
+p {
+    margin-bottom: 2rem;
+}
+
+/* Menu Styles */
+.menu-card {
+    background-color: var(--surface-color);
+    padding: 2rem;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 500px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    margin-bottom: 2rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: normal;
+    cursor: pointer;
+}
+
+select {
+    width: 100%;
+    padding: 0.75rem;
+    border-radius: 4px;
+    border: 1px solid var(--key-border);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-size: 1rem;
+}
+
+select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+/* Button Styles */
+.btn {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+.btn:active {
+    transform: translateY(2px);
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: #000;
+    width: 100%;
+}
+
+.btn-primary:hover {
+    background-color: #d0a8ff;
+}
+
+.btn-secondary {
+    background-color: var(--surface-color);
+    color: var(--text-color);
+    border: 1px solid var(--key-border);
+}
+
+.btn-secondary:hover {
+    background-color: var(--surface-color-hover);
+}
+
+.btn-danger {
+    background-color: var(--error-color);
+    color: #000;
+}
+
+.btn-danger:hover {
+    background-color: #e57373;
+}
+
+.btn-small {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.9rem;
+}
+
+.btn-back {
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.btn-back:hover {
+    text-decoration: underline;
+}
+
+/* Practice Area Styles */
+.practice-body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.practice-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.practice-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--key-border);
+    margin-bottom: 1rem;
+}
+
+.live-stats {
+    display: flex;
+    gap: 2rem;
+    font-size: 1.2rem;
+    font-family: monospace;
+}
+
+.stat-box {
+    background-color: var(--surface-color);
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+}
+
+.stat-box span {
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+.typing-area {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+}
+
+.text-display {
+    font-size: 1.5rem;
+    font-family: 'Consolas', 'Courier New', Courier, monospace;
+    line-height: 1.8;
+    padding: 2rem;
+    background-color: var(--surface-color);
+    border-radius: 8px;
+    flex-grow: 1;
+    overflow-y: auto;
+    white-space: pre-wrap;
+    outline: none;
+    border: 2px solid transparent;
+}
+
+.text-display:focus {
+    border-color: var(--primary-color);
+}
+
+/* Character states */
+.char {
+    color: #666;
+    border-bottom: 2px solid transparent;
+}
+
+.char.correct {
+    color: var(--typed-correct);
+}
+
+.char.incorrect {
+    color: var(--typed-incorrect);
+    background-color: rgba(207, 102, 121, 0.2);
+    border-radius: 2px;
+}
+
+.char.current {
+    color: var(--typed-current);
+    border-bottom: 2px solid var(--primary-color);
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0%, 100% { border-bottom-color: var(--primary-color); }
+    50% { border-bottom-color: transparent; }
+}
+
+/* Visual Aids (Keyboard and Hands) */
+.visual-aids {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.hands-container {
+    width: 100%;
+    max-width: 600px;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+}
+
+/* SVG Hand styling */
+.hand-svg {
+    width: 100%;
+    height: 100%;
+}
+.finger {
+    fill: #555;
+    stroke: #333;
+    stroke-width: 1;
+    transition: fill 0.2s;
+}
+
+.finger.target {
+    fill: var(--key-target);
+    filter: drop-shadow(0 0 5px var(--key-target));
+}
+
+.finger.active {
+    fill: var(--key-active);
+}
+
+/* Keyboard styling */
+.keyboard {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    background-color: var(--surface-color);
+    padding: 15px;
+    border-radius: 10px;
+    width: fit-content;
+    margin: 0 auto;
+}
+
+.key-row {
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+}
+
+.key {
+    background-color: var(--key-bg);
+    border: 1px solid var(--key-border);
+    color: var(--key-text);
+    border-radius: 4px;
+    padding: 10px;
+    min-width: 40px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: monospace;
+    font-size: 1rem;
+    transition: background-color 0.1s, transform 0.1s;
+    user-select: none;
+}
+
+.key-wide { min-width: 60px; }
+.key-wider { min-width: 80px; }
+.key-widest { min-width: 100px; }
+.key-space { min-width: 300px; }
+
+.key.target {
+    background-color: var(--key-target);
+    color: #000;
+    box-shadow: 0 0 10px var(--key-target);
+}
+
+.key.active {
+    background-color: var(--key-active);
+    color: #000;
+    transform: translateY(2px);
+}
+
+/* Modal Styles */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal.hidden {
+    display: none;
+}
+
+.modal-content {
+    background-color: var(--surface-color);
+    padding: 3rem;
+    border-radius: 8px;
+    text-align: center;
+    max-width: 500px;
+    width: 90%;
+}
+
+.final-stats {
+    margin: 2rem 0;
+    font-size: 1.2rem;
+    text-align: left;
+    background: #222;
+    padding: 1.5rem;
+    border-radius: 8px;
+}
+
+.final-stats span {
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.modal-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+/* Stats Page */
+.stats-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 2rem;
+}
+
+.stats-summary {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1rem;
+    width: 100%;
+    margin-bottom: 3rem;
+}
+
+.summary-card {
+    background-color: var(--surface-color);
+    padding: 1.5rem;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.summary-card p {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    margin: 0;
+}
+
+.stats-history {
+    width: 100%;
+    margin-bottom: 2rem;
+}
+
+.table-container {
+    overflow-x: auto;
+    background-color: var(--surface-color);
+    border-radius: 8px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--key-border);
+}
+
+th {
+    background-color: var(--key-bg);
+    color: var(--secondary-color);
+}
+
+tr:hover td {
+    background-color: var(--surface-color-hover);
+}
+
+.stats-actions {
+    width: 100%;
+    text-align: right;
+}
